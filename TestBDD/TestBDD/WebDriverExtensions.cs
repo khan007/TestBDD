@@ -2,15 +2,42 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-public static class WebDriverExtensions
+namespace TestBDD
 {
-    public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInSeconds)
+    public static class WebDriverExtensions
     {
-        if (timeoutInSeconds > 0)
+        public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInSeconds)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
-            return wait.Until(drv => drv.FindElement(by));
+            if (timeoutInSeconds > 0)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+                //return wait.Until(drv => drv.FindElement(by));
+
+                //var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 30));
+                //var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("content-section")));
+
+                var element = wait.Until(condition =>
+                {
+                    try
+                    {
+                        var elementToBeDisplayed = driver.FindElement(by);
+                        return elementToBeDisplayed.Displayed;
+                    }
+                    catch (StaleElementReferenceException)
+                    {
+                        return false;
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        return false;
+                    }
+                });
+            }
+            return driver.FindElement(by);
         }
-        return driver.FindElement(by);
+        public static By SelectorByAttributeValue(string attributeName, string attributeValue)
+        {
+            return (By.XPath($"//*[@{attributeName} = '{attributeValue}']"));
+        }
     }
 }

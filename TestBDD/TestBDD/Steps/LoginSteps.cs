@@ -56,6 +56,8 @@ namespace TestBDD.Steps
         {
             var input = _driver.FindElement(By.Id("welcome-user-wrapper"), 10);
             Assert.NotNull(input);
+
+            ScenarioContext.Current.Add("login", _driver);
         }
     }
 }

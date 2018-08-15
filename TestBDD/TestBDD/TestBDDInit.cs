@@ -8,6 +8,7 @@ namespace TestBDD
     [Binding]
     public class GeneralHooks
     {
+        private ScenarioContext scenarioContext;
         private IWebDriver _driver;
 
         [BeforeScenario]
@@ -28,7 +29,7 @@ namespace TestBDD
         [AfterScenario]
         public void RunAfterScenario()
         {
-            _driver?.Quit();
+            //_driver?.Quit();
         }
     }
 }

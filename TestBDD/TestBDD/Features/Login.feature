@@ -5,4 +5,4 @@ Scenario: Login to homepage
 	Given I input enter login 'login'
 	Given I input enter password 'password'
 	When I press 'login'
-	Then redirects me to 'page'
+	Then redirects me to 'homepage'
