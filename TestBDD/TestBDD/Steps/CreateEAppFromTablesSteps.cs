@@ -1,46 +1,84 @@
 ﻿using System;
+using System.Threading;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
-using Xunit;
 using TestBDD.Transform;
+using Xunit;
 
 namespace TestBDD.Steps
 {
     [Binding]
-    public class CreateEAppSteps
+    public class CreateEAppFromTablesSteps
     {
         private readonly IWebDriver _driver;
         private readonly string _url = "http://localhost:50553/";
         private readonly ScenarioContext scenarioContext;
         private const int Timeout = 15;
 
-        public CreateEAppSteps(ScenarioContext scenarioContext)
+        public CreateEAppFromTablesSteps(ScenarioContext scenarioContext)
         {
             if (scenarioContext == null) throw new ArgumentNullException("scenarioContext");
             this.scenarioContext = scenarioContext;
             _driver = scenarioContext.Get<IWebDriver>("currentDriver");
         }
 
-        [Given(@"I am on '(.*)'")]
-        public void GivenIAmOn(string p0)
+        [Given(@"I login to URL (.*)")]
+        public void GivenILoginToURL(string URL)
+        {
+            _driver.Navigate().GoToUrl(_url);
+
+            var inputUsername = By.XPath("//*[contains(@id,'UsernameTextBox')]");
+            var loginFormSection = _driver.FindElement(inputUsername);
+
+            Assert.NotNull(loginFormSection);
+        }
+        
+        [Given(@"I input enter login (.*)")]
+        public void GivenIInputEnterLogin(string login)
+        {
+            var inputUsername = By.XPath("//*[contains(@id,'UsernameTextBox')]");
+            var input = _driver.FindElement(inputUsername);
+            input.SendKeys(login);
+        }
+        
+        [Given(@"I input enter password (.*)")]
+        public void GivenIInputEnterPassword(string password)
+        {
+            var inputUsername = By.XPath("//*[contains(@id,'PasswordTextBox')]");
+            var input = _driver.FindElement(inputUsername);
+            //var input = _driver.FindElement(By.Id("Password"));
+            input.SendKeys(password);
+        }
+        
+        [Given(@"I am on (.*)")]
+        public void GivenIAmOn(string homePageName)
         {
             var input = _driver.FindElement(By.Id("welcome-user-wrapper"), Timeout);
             Assert.NotNull(input);
             input = _driver.FindElement(By.Id("home"), Timeout);
             Assert.NotNull(input);
         }
+        
+        [When(@"I press (.*)")]
+        public void WhenIPress(string loginButton)
+        {
+            var inputUsername = By.XPath("//*[contains(@id,'SubmitButton')]");
+            var input = _driver.FindElement(inputUsername);
 
-        [When(@"I click on '(.*)' button")]
+            //input = _driver.FindElement(input);
+            input.Click();
+        }
+        
+        [When(@"I click on (.*) button")]
         public void WhenIClickOnButton(string p0)
         {
             var input = _driver.FindElement(By.ClassName("new-eapp"), Timeout);
             Assert.NotNull(input);
             input.Click();
         }
-
-        [When(@"I choose '(.*)' State in Issue State")]
-        public void WhenIChooseStateInIssueState(string state)
+        
+        [When(@"I choose (.*) in Issue State")]
+        public void WhenIChooseInIssueState(string state)
         {
             //var input = _driver.FindElement(By.Id("SelectedIssueState"), 10);
             // Assert.NotNull(input);
@@ -64,28 +102,20 @@ namespace TestBDD.Steps
             //selectElement.SelectByText("Alaska");
         }
 
-        [When(@"I enter '(.*)' Date of Birth \((.*) age\)")]
-        public void WhenIEnterDateOfBirthAge(string birthdate, int p1)
+        [When(@"I enter date of birth (.*) \((.*)\)")]
+        public void WhenIEnter(string dateOfBirth, int age)
         {
+            dateOfBirth = dateOfBirth.Replace("/", "");
+
             var input = _driver.FindElement(By.Id("BirthDate"));
             input.Click();
             Assert.NotNull(input);
-            input.SendKeys(birthdate);
+            input.SendKeys(dateOfBirth);
         }
-
-        [When(@"I select Gender '(.*)'")]
-        public void WhenISelectGender(string gender)
+        
+        [When(@"I select gender (.*)")]
+        public void WhenISelect(string gender)
         {
-            //var input = _driver.FindElement(By.Id("Gender"), 10);
-            //Assert.NotNull(input);
-            //var selectElement = new OpenQA.Selenium.Support.UI.SelectElement(input);
-            //Assert.NotNull(selectElement);
-            ////select by value
-            ////selectElement.SelectByValue("Jr.High");
-            //// select by text
-            //selectElement.SelectByText("Male");
-            ////ScenarioContext.Current.Pending();
-            ///
             var input = _driver.FindElement(By.Id("Gender_chosen"), Timeout);
 
             //Assert.NotNull(input);
@@ -101,31 +131,24 @@ namespace TestBDD.Steps
             results2[0].Click();
         }
 
-        [When(@"I enter Firstname '(.*)'")]
-        public void WhenIEnterFirstname(string p0)
+        [When(@"I enter firstname (.*)")]
+        public void WhenIEnterFirstname(string firstname)
         {
             var input = _driver.FindElement(By.Id("FirstName"));
             Assert.NotNull(input);
-            input.SendKeys(p0);
+            input.SendKeys(firstname);
         }
 
-        [When(@"I enter Lastname '(.*)'")]
-        public void WhenIEnterLastname(string p0)
+        [When(@"I enter lastname (.*)")]
+        public void WhenIEnterLastname(string lastname)
         {
             var input = _driver.FindElement(By.Id("LastName"));
             Assert.NotNull(input);
-            input.SendKeys(p0);
-        }
-
-        [Then(@"a popup appears with list of products")]
-        public void ThenAPopupAppearsWithListOfProducts()
-        {
-            var input = _driver.FindElement(By.Id("newEApp-results-grid"), Timeout);
-            Assert.NotNull(input);
+            input.SendKeys(lastname);
         }
 
         [When(@"I (select '.*' product)")]
-        public void WhenISelectProduct(ProductCode productCode)
+        public void WhenISelectA(ProductCode productCode)
         {
             bool staleElement = true;
             while (staleElement)
@@ -150,28 +173,26 @@ namespace TestBDD.Steps
             }
         }
 
-        [When(@"I click on Create button '(.*)'")]
+        [When(@"I click on Create button (.*)")]
         public void WhenIClickOnCreateButton(string p0)
         {
             var input = _driver.FindElement(By.Id("new-eapp-open"), Timeout);
             Assert.NotNull(input);
             input.Click();
         }
-
-        [Then(@"Get redirected to '(.*)' product '(.*)'")]
-        public void ThenGetRedirectedTo(string p0, string product)
+        
+        [Then(@"redirects me to (.*)")]
+        public void ThenRedirectsMeTo(string p0)
+        {
+            
+        }
+        
+        [Then(@"Get redirected to (.*) product")]
+        public void ThenGetRedirectedToProduct(string product)
         {
             var input = _driver.FindElement(By.Id("product-name"), Timeout);
             Assert.NotNull(input);
             Assert.Equal(product, input.Text);
-        }
-
-        [Given(@"Given I entered the following data into the new account form:")]
-        public void EnteredTheFollowingDataIntoTheNewAccountForm(Table table)
-        {
-            var data = table.ToDictionary();
-            
-            // account.Name will equal "John Galt", HeightInInches will equal 72, etc.
         }
     }
 }

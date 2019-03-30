@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using System.Configuration;
 
 namespace TestBDD.Browsers
 {
@@ -7,6 +8,11 @@ namespace TestBDD.Browsers
     {
         private static IWebDriver _driver;
         private readonly string WebUrl;
+
+        public static string BaseUrl
+        {
+            get { return ConfigurationManager.AppSettings["BaseUrl"]; }
+        }
 
         protected BasePage(IWebDriver driver)
         {

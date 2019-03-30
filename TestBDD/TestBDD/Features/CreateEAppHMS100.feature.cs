@@ -17,17 +17,17 @@ namespace TestBDD.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CreateEAppFeature : Xunit.IClassFixture<CreateEAppFeature.FixtureData>, System.IDisposable
+    public partial class CreateEAppHMS100Feature : Xunit.IClassFixture<CreateEAppHMS100Feature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CreateEApp.feature"
+#line 1 "CreateEAppHMS100.feature"
 #line hidden
         
-        public CreateEAppFeature(CreateEAppFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreateEAppHMS100Feature(CreateEAppHMS100Feature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -36,7 +36,7 @@ namespace TestBDD.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create EApp", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateEAppHMS100", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -93,7 +93,7 @@ namespace TestBDD.Features
         }
         
         [Xunit.FactAttribute(DisplayName="Create eApp current scenario product male")]
-        [Xunit.TraitAttribute("FeatureTitle", "Create EApp")]
+        [Xunit.TraitAttribute("FeatureTitle", "CreateEAppHMS100")]
         [Xunit.TraitAttribute("Description", "Create eApp current scenario product male")]
         [Xunit.TraitAttribute("Category", "Eagle")]
         [Xunit.TraitAttribute("Category", "Premier")]
@@ -126,11 +126,11 @@ this.FeatureBackground();
 #line 20
  testRunner.When("I enter Lastname \'Tremblay\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 21
- testRunner.When("I select \'Eagle Premier Series\' product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I select \'HMS Plus 100\' product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
  testRunner.When("I click on Create button \'Create\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
- testRunner.Then("Get redirected to \'page introduction\' product \'Eagle Premier Series\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Get redirected to \'page introduction\' product \'HMS Plus 100\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -142,12 +142,12 @@ this.FeatureBackground();
             
             public FixtureData()
             {
-                CreateEAppFeature.FeatureSetup();
+                CreateEAppHMS100Feature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CreateEAppFeature.FeatureTearDown();
+                CreateEAppHMS100Feature.FeatureTearDown();
             }
         }
     }
