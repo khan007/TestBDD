@@ -76,12 +76,13 @@ namespace TestBDD.Features
             this.ScenarioTearDown();
         }
         
-        [Xunit.FactAttribute(DisplayName="Login to homepage")]
+        [Xunit.FactAttribute(DisplayName="Login to homepage", Skip="Ignored")]
         [Xunit.TraitAttribute("FeatureTitle", "Login")]
         [Xunit.TraitAttribute("Description", "Login to homepage")]
         public virtual void LoginToHomepage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login to homepage", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login to homepage", null, new string[] {
+                        "ignore"});
 #line 3
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

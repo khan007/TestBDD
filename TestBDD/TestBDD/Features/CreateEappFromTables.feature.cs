@@ -24,7 +24,7 @@ namespace TestBDD.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CreateEappFromTable.feature"
+#line 1 "CreateEappFromTables.feature"
 #line hidden
         
         public CreateEAppFromTablesFeature(CreateEAppFromTablesFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
@@ -85,7 +85,7 @@ namespace TestBDD.Features
         [Xunit.TheoryAttribute(DisplayName="Login")]
         [Xunit.TraitAttribute("FeatureTitle", "Create EApp From Tables")]
         [Xunit.TraitAttribute("Description", "Login")]
-        [Xunit.InlineDataAttribute("http://localhost:50553/", "kvongsav", "Americo2$", "LoginButton", "homepage", new string[0])]
+        [Xunit.InlineDataAttribute("http://localhost:50553/", "kvongsav", "April12019!", "LoginButton", "homepage", new string[0])]
         public virtual void Login(string url, string login, string password, string loginButton, string homepage, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login", null, exampleTags);
@@ -111,37 +111,44 @@ this.FeatureBackground();
         [Xunit.TheoryAttribute(DisplayName="Create eApp current scenario product male")]
         [Xunit.TraitAttribute("FeatureTitle", "Create EApp From Tables")]
         [Xunit.TraitAttribute("Description", "Create eApp current scenario product male")]
-        [Xunit.InlineDataAttribute("", "", "Alabama", "01/01/1967", "male", "John", "Galt", "Eagle Premier Series", "Create", "", new string[0])]
-        public virtual void CreateEAppCurrentScenarioProductMale(string homePageName, string buttonName, string state, string dateOfBirth, string gender, string firstname, string lastname, string product, string createButton, string nextPage, string[] exampleTags)
+        [Xunit.TraitAttribute("Category", "eApp")]
+        [Xunit.InlineDataAttribute("", "", "Alabama", "01/01/1967", "53", "male", "John", "Galt", "Eagle Premier Series", "Create", "", new string[0])]
+        public virtual void CreateEAppCurrentScenarioProductMale(string homePageName, string buttonName, string state, string dateOfBirth, string age, string gender, string firstname, string lastname, string product, string createButton, string nextPage, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create eApp current scenario product male", null, exampleTags);
-#line 14
+            string[] @__tags = new string[] {
+                    "eApp"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create eApp current scenario product male", null, @__tags);
+#line 15
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 15
- testRunner.Given(string.Format("I am on {0}", homePageName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 16
- testRunner.When(string.Format("I click on {0} button", buttonName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given(string.Format("I am on {0}", homePageName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
- testRunner.Then("a popup appears with list of products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When(string.Format("I click on {0} button", buttonName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.When(string.Format("I choose {0} in Issue State", state), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("a popup appears with list of products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 19
- testRunner.When("I enter date of birth <date of Birth> (<age>)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I choose {0} in Issue State", state), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 20
- testRunner.When(string.Format("I select gender {0}", gender), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I enter date of birth {0} ({1})", dateOfBirth, age), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 21
- testRunner.When(string.Format("I enter firstname {0}", firstname), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I select gender {0}", gender), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
- testRunner.When(string.Format("I enter lastname {0}", lastname), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I enter firstname {0}", firstname), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
- testRunner.When(string.Format("I select a product {0}", product), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I enter lastname {0}", lastname), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 24
- testRunner.When(string.Format("I click on Create button {0}", createButton), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I select product {0}", product), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
- testRunner.Then(string.Format("Get redirected to {0} product", nextPage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When(string.Format("I click on Create button {0}", createButton), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+ testRunner.Then(string.Format("Get redirected to {0} product", product), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

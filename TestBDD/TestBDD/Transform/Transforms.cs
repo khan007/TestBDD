@@ -10,7 +10,7 @@ namespace TestBDD.Transform
     {
         private static ProductCode product;
        
-        [StepArgumentTransformation(@"select '(.*)' product")]
+        [StepArgumentTransformation(@"product (.*)")]
         public ProductCode ProductConvertToProductCode(string productName)
         {
             if (product == null)

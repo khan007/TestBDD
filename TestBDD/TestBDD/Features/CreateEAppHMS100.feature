@@ -1,12 +1,12 @@
 ﻿Feature: CreateEAppHMS100
-
+ 
 Background:
     Given I login to URL 'URL'
 	Given I input enter login 'kvongsav'
-	Given I input enter password 'Americo2$'
+	Given I input enter password 'April12019!'
 	When I press 'login'
 	Then redirects me to 'homepage'
-
+@ignore 
 @Eagle Premier
 @male
 Scenario: Create eApp current scenario product male
@@ -18,6 +18,6 @@ Scenario: Create eApp current scenario product male
 	When I select Gender 'Male'
 	When I enter Firstname 'Tim'
 	When I enter Lastname 'Tremblay'
-	When I select 'HMS Plus 100' product
+	When I select product HMS Plus 100 
 	When I click on Create button 'Create'
 	Then Get redirected to 'page introduction' product 'HMS Plus 100'

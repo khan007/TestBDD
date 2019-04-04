@@ -119,9 +119,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateEAppHMS100.feature</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructures\Constant.cs" />
     <Compile Include="SpecFlowExtensions.cs" />
     <Compile Include="Steps\CreateEAppFromTablesSteps.cs" />
-    <Compile Include="Steps\CreateEappFromTableSteps.cs" />
     <Compile Include="Steps\CreateEAppSteps.cs" />
     <Compile Include="Steps\LoginSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,7 +132,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Features\CreateEApp.feature" />
-    <None Include="Features\CreateEappFromTable.feature" />
+    <None Include="Features\CreateEappFromTables.feature" />
     <None Include="Features\CreateEAppHMS100.feature" />
     <None Include="Features\Login.feature" />
     <None Include="packages.config" />

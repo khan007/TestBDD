@@ -1,6 +1,5 @@
-﻿using System;
-using System.Threading;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 using TestBDD.Transform;
 using Xunit;
@@ -8,67 +7,43 @@ using Xunit;
 namespace TestBDD.Steps
 {
     [Binding]
-    public class CreateEAppFromTablesSteps
+    public class CreateEAppFromTablesSteps : TechTalk.SpecFlow.Steps
     {
+        private class ScenarioInformation
+        {
+            public string Title { get; set; }
+            public string[] Tags { get; set; }
+        }
+
         private readonly IWebDriver _driver;
         private readonly string _url = "http://localhost:50553/";
         private readonly ScenarioContext scenarioContext;
         private const int Timeout = 15;
-
+        
         public CreateEAppFromTablesSteps(ScenarioContext scenarioContext)
         {
-            if (scenarioContext == null) throw new ArgumentNullException("scenarioContext");
+            if (scenarioContext == null)
+            {
+                throw new ArgumentNullException("scenarioContext");
+            }
             this.scenarioContext = scenarioContext;
             _driver = scenarioContext.Get<IWebDriver>("currentDriver");
         }
 
-        [Given(@"I login to URL (.*)")]
-        public void GivenILoginToURL(string URL)
-        {
-            _driver.Navigate().GoToUrl(_url);
-
-            var inputUsername = By.XPath("//*[contains(@id,'UsernameTextBox')]");
-            var loginFormSection = _driver.FindElement(inputUsername);
-
-            Assert.NotNull(loginFormSection);
-        }
-        
-        [Given(@"I input enter login (.*)")]
-        public void GivenIInputEnterLogin(string login)
-        {
-            var inputUsername = By.XPath("//*[contains(@id,'UsernameTextBox')]");
-            var input = _driver.FindElement(inputUsername);
-            input.SendKeys(login);
-        }
-        
-        [Given(@"I input enter password (.*)")]
-        public void GivenIInputEnterPassword(string password)
-        {
-            var inputUsername = By.XPath("//*[contains(@id,'PasswordTextBox')]");
-            var input = _driver.FindElement(inputUsername);
-            //var input = _driver.FindElement(By.Id("Password"));
-            input.SendKeys(password);
-        }
-        
         [Given(@"I am on (.*)")]
         public void GivenIAmOn(string homePageName)
         {
+            Given(string.Format(@"I login to URL {0}", _url));
+            Given(string.Format(@"I input enter login {0}", "kvongsav"));
+            Given(string.Format(@"I input enter password {0}", "April12019!"));
+            When(string.Format(@"I press {0}", ""));
+
             var input = _driver.FindElement(By.Id("welcome-user-wrapper"), Timeout);
             Assert.NotNull(input);
             input = _driver.FindElement(By.Id("home"), Timeout);
             Assert.NotNull(input);
         }
-        
-        [When(@"I press (.*)")]
-        public void WhenIPress(string loginButton)
-        {
-            var inputUsername = By.XPath("//*[contains(@id,'SubmitButton')]");
-            var input = _driver.FindElement(inputUsername);
 
-            //input = _driver.FindElement(input);
-            input.Click();
-        }
-        
         [When(@"I click on (.*) button")]
         public void WhenIClickOnButton(string p0)
         {
@@ -147,7 +122,7 @@ namespace TestBDD.Steps
             input.SendKeys(lastname);
         }
 
-        [When(@"I (select '.*' product)")]
+        [When(@"I select (product .*)")]
         public void WhenISelectA(ProductCode productCode)
         {
             bool staleElement = true;
@@ -181,11 +156,7 @@ namespace TestBDD.Steps
             input.Click();
         }
         
-        [Then(@"redirects me to (.*)")]
-        public void ThenRedirectsMeTo(string p0)
-        {
-            
-        }
+        
         
         [Then(@"Get redirected to (.*) product")]
         public void ThenGetRedirectedToProduct(string product)

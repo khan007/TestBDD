@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Imaging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -40,7 +41,10 @@ namespace TestBDD
         {
             if (timeoutInSeconds > 0)
             {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds))
+                {
+                    PollingInterval = TimeSpan.FromMilliseconds(100)
+                };
                 var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(by));
                 return element;
             }
@@ -49,6 +53,14 @@ namespace TestBDD
         public static By SelectorByAttributeValue(string attributeName, string attributeValue)
         {
             return (By.XPath($"//*[@{attributeName} = '{attributeValue}']"));
+        }
+
+        public static string TakeScreenshot(this IWebDriver driver, string prefix)
+        {
+            var fileName = String.Format("{0}{1}{2}", prefix, DateTime.Now.ToString("HHmmss"), ".png");
+            var screenShot = ((ITakesScreenshot)driver).GetScreenshot();
+            screenShot.SaveAsFile(fileName, ScreenshotImageFormat.Png);
+            return fileName;
         }
     }
 }

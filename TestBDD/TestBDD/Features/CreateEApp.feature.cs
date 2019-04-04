@@ -79,7 +79,7 @@ namespace TestBDD.Features
 #line 5
  testRunner.Given("I input enter login \'kvongsav\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
- testRunner.Given("I input enter password \'Americo2$\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I input enter password \'April12019!\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
  testRunner.When("I press \'login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
@@ -92,7 +92,7 @@ namespace TestBDD.Features
             this.ScenarioTearDown();
         }
         
-        [Xunit.FactAttribute(DisplayName="Create eApp current scenario product male")]
+        [Xunit.FactAttribute(DisplayName="Create eApp current scenario product male", Skip="Ignored")]
         [Xunit.TraitAttribute("FeatureTitle", "Create EApp")]
         [Xunit.TraitAttribute("Description", "Create eApp current scenario product male")]
         [Xunit.TraitAttribute("Category", "Eagle")]
@@ -101,6 +101,7 @@ namespace TestBDD.Features
         public virtual void CreateEAppCurrentScenarioProductMale()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create eApp current scenario product male", null, new string[] {
+                        "ignore",
                         "Eagle",
                         "Premier",
                         "male"});
@@ -126,7 +127,7 @@ this.FeatureBackground();
 #line 20
  testRunner.When("I enter Lastname \'Tremblay\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 21
- testRunner.When("I select \'Eagle Premier Series\' product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I select product Eagle Premier Series", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
  testRunner.When("I click on Create button \'Create\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
